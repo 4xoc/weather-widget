@@ -1,0 +1,10 @@
+<iframe id="weather" src="wrapper2.html" width="600px" height="250px" frameborder="0" scrolling="no"></iframe>
+<script>
+  var frame = document.getElementById("weather");
+  frame.addEventListener("load", function() {
+    /* configuration */
+    apiKey = "";
+    zip= "";
+    this.contentWindow.postMessage({call:'sendValue', value: {key: apiKey, zip: zip}}, '*');
+  });
+</script>

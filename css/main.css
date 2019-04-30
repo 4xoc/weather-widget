@@ -1,0 +1,104 @@
+body {
+  background: #161719;
+  color: #eeeeee;
+  font-family: Tahoma,Arial,Verdana,Segoe,sans-serif;
+  max-width: 600px;
+  max-height: 400px;
+  padding: 0px;
+  margin: 5px;
+}
+
+header {
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+}
+
+header #location {
+  font-size: 20px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+header #current {
+  text-align: center;
+}
+
+header #current .block {
+  text-align: center;
+  display: inline-block;
+  width: calc(100%/3.1);
+}
+
+header #current .temperature {
+  font-size: 40px;
+}
+
+header #current .icon {
+  font-size: 70px;
+  margin: 10px;
+}
+
+header #current .warning {
+  font-size: 40px;
+}
+
+header #current .note {
+  font-size: 15px;
+  font-style: italic;
+}
+
+#details {
+  font-size: 20px;
+  border-bottom: 1px solid lightgrey;
+}
+
+#details .row {
+  width: 100%;
+}
+
+#details .half-row {
+  width: calc(50% - 8px);
+  display: inline-block;
+  margin: 5px 0px 0px 5px;
+}
+
+#details .cell {
+  width: auto;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+#details .icon {
+  width: 80px;
+  text-align: right;
+  color: #aeaeae;
+}
+
+#details .even-row {
+  background-color: #3e3e3e;
+}
+
+.uv-low {
+  font-weight: bold;
+  color: #01b053;
+}
+
+.uv-medium {
+  font-weight: bold;
+  color: #ffff00;
+}
+
+.uv-high {
+  font-weight: bold;
+  color: #f93;
+}
+
+.uv-very-high {
+  font-weight: bold;
+  color: #c10001;
+}
+
+.uv-extremely-high {
+  font-weight: bold;
+  color: #bf45bf;
+}
