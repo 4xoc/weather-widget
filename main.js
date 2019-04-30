@@ -92,7 +92,7 @@ window.addEventListener('message', function(event) {
           document.getElementById("forecast"+index+"_note").innerHTML = data3.list[i].weather[0].description;
           document.getElementById("forecast"+index+"_temp").innerHTML = parseFloat(data3.list[i].main.temp_min).toFixed(0) + " / " +
             parseFloat(data3.list[i].main.temp_max).toFixed(0) + " &deg;C";
-          document.getElementById("forecast"+index+"_wind").innerHTML = data3.list[3].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg + "-deg\"></span>";
+          document.getElementById("forecast"+index+"_wind").innerHTML = data3.list[i].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg + "-deg\"></span>";
           index++;
         }
       }
