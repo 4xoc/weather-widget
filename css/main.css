@@ -35,7 +35,7 @@ header #current .temperature {
 
 header #current .icon {
   font-size: 70px;
-  margin: 10px;
+  margin: 0px 10px 15px 10px;
 }
 
 header #current .warning {
@@ -74,7 +74,7 @@ header #current .note {
   color: #aeaeae;
 }
 
-#details .even-row {
+.even {
   background-color: #3e3e3e;
 }
 
@@ -101,4 +101,43 @@ header #current .note {
 .uv-extremely-high {
   font-weight: bold;
   color: #bf45bf;
+}
+
+#forecast {
+  font-size: 20px;
+}
+
+#forecast .day {
+  float: left;
+  display: inline-block;
+  width: 146.7px;
+  height: 158px;
+  text-align: center;
+}
+
+#forecast .border {
+  border-right: 1px dotted lightgrey;
+}
+
+#forecast .note {
+  font-style: italic;
+  font-size: 15px;
+  padding-top: 5px;
+}
+
+#forecast .title {
+  width: 100%;
+  display: block;
+  padding: 5px 0px 0px 0px;
+}
+
+#forecast .icon {
+  width: 100%;
+  display: block;
+  padding: 5px 0px 5px 0px;
+  font-size: 40px;
+}
+
+#forecast .row {
+  padding-top: 5px;
 }

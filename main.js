@@ -11,9 +11,8 @@ window.addEventListener('message', function(event) {
     //console.log(data);
   
     // header
-    document.getElementById("location").innerHTML = data.name;
-    document.getElementById("now_temp").innerHTML = parseFloat(data.main.temp).toFixed(2) + " &deg;C";
-    document.getElementById("now_temp_note").innerHTML = data.weather[0].main;
+    document.getElementById("location").innerHTML = data.name; document.getElementById("now_temp").innerHTML = parseFloat(data.main.temp).toFixed(2) + " &deg;C";
+    document.getElementById("now_temp_note").innerHTML = data.weather[0].description;
     document.getElementById("now_weather").classList.add("wi-owm-" + data.weather[0].id);
     document.getElementById("now_warning").classList.add("wi-na"); // TODO: add warnings here
     document.getElementById("now_warning_note").innerHTML = "no warnings";
@@ -52,10 +51,57 @@ window.addEventListener('message', function(event) {
       }
 
       document.getElementById("detail_uv").innerHTML = '<span class="uv-'+color+'">'+data2.value+'</span>';
+
+      /* forecast */
+      var request3 = new XMLHttpRequest()
+      request3.open('GET', baseUrl+'forecast?&units=metric&zip='+zipCode+'&APPID='+apiKey, true);
+      request3.onload = function () {
+        var data3 = JSON.parse(this.response)
+        //console.log(data3);
+
+        var weekdays = new Array(7);
+        weekdays[0] = "Sun";
+        weekdays[1] = "Mon";
+        weekdays[2] = "Tue";
+        weekdays[3] = "Wed";
+        weekdays[4] = "Thu";
+        weekdays[5] = "Fri";
+        weekdays[6] = "Sat";
+        var today = new Date();
+        var index = 0;
+
+        for (i=0;i<data3.cnt;i++) {
+          var day = new Date(data3.list[i].dt*1000);
+
+          //TODO: this is nice and all but doesn't work very well
+          // need to add: check all forecast values and get lowest/highest temp prediction
+          // need to add: check all forcast values and get best/worst weather prediction
+          if (day.getUTCHours() != 12 || index >= 4) {
+            //only using midday forecast for the next 4 days
+            continue;
+          }
+
+          if (day.getDay() != today.getDay()) {
+            // because `today` is hardcoded
+            console.log(day);
+            document.getElementById("forecast"+index+"_title").innerHTML = weekdays[day.getDay()];
+          }
+
+          document.getElementById("forecast"+index+"_icon").classList.add("wi-owm-" + data3.list[i].weather[0].id);
+          document.getElementById("forecast"+index+"_icon").setAttribute("title",data3.list[i].weather[0].description);
+          document.getElementById("forecast"+index+"_note").innerHTML = data3.list[i].weather[0].description;
+          document.getElementById("forecast"+index+"_temp").innerHTML = parseFloat(data3.list[i].main.temp_min).toFixed(0) + " / " +
+            parseFloat(data3.list[i].main.temp_max).toFixed(0) + " &deg;C";
+          document.getElementById("forecast"+index+"_wind").innerHTML = data3.list[3].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg + "-deg\"></span>";
+          index++;
+        }
+      }
+
+      request3.send();
     }
 
-    request2.send()
+    request2.send();
   }
 
-  request.send()
+  request.send();
 }, false);
