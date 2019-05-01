@@ -3,7 +3,6 @@ body {
   color: #eeeeee;
   font-family: Roboto;
   max-width: 600px;
-  max-height: 400px;
   padding: 0px;
   margin: 5px;
 }
@@ -110,8 +109,8 @@ header #current .note {
 #forecast .day {
   float: left;
   display: inline-block;
-  width: 146.7px;
-  height: 160px;
+  width: 294.5;
+  height: 178px;
   text-align: center;
 }
 
@@ -119,10 +118,18 @@ header #current .note {
   border-right: 1px dotted lightgrey;
 }
 
+#forecast .segment {
+  width: 98.1;
+  display: inline-block;
+  float: left;
+}
+
 #forecast .note {
   font-style: italic;
-  font-size: 15px;
+  font-size: 13px;
   padding-top: 5px;
+  height: 35px;
+  word-spacing: 98;
 }
 
 #forecast .title {
@@ -135,9 +142,10 @@ header #current .note {
   width: 100%;
   display: block;
   padding: 5px 0px 5px 0px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 #forecast .row {
   padding-top: 5px;
+  font-size: 15px;
 }

@@ -1,5 +1,4 @@
 window.addEventListener('message', function(event) {
-  //console.log(event);
   apiKey = event.data.value.key;
   zipCode = event.data.value.zip;
   baseUrl = "https://api.openweathermap.org/data/2.5/";
@@ -8,7 +7,6 @@ window.addEventListener('message', function(event) {
   request.open('GET', baseUrl+'weather?units=metric&zip='+zipCode+'&APPID='+apiKey, true);
   request.onload = function () {
     var data = JSON.parse(this.response)
-    //console.log(data);
   
     // header
     document.getElementById("location").innerHTML = data.name; document.getElementById("now_temp").innerHTML = parseFloat(data.main.temp).toFixed(2) + " &deg;C";
@@ -36,7 +34,6 @@ window.addEventListener('message', function(event) {
     request2.open('GET', baseUrl+'uvi?lat='+data.coord.lat+'&lon='+data.coord.lon+'&APPID='+apiKey, true);
     request2.onload = function () {
       var data2 = JSON.parse(this.response)
-      //console.log(data2);
 
       if (data2.value < 3) {
         var color = "low";
@@ -57,43 +54,56 @@ window.addEventListener('message', function(event) {
       request3.open('GET', baseUrl+'forecast?&units=metric&zip='+zipCode+'&APPID='+apiKey, true);
       request3.onload = function () {
         var data3 = JSON.parse(this.response)
-        //console.log(data3);
 
         var weekdays = new Array(7);
-        weekdays[0] = "Sun";
-        weekdays[1] = "Mon";
-        weekdays[2] = "Tue";
-        weekdays[3] = "Wed";
-        weekdays[4] = "Thu";
-        weekdays[5] = "Fri";
-        weekdays[6] = "Sat";
+        weekdays[0] = "Sunday";
+        weekdays[1] = "Monday";
+        weekdays[2] = "Tuesday";
+        weekdays[3] = "Wedesday";
+        weekdays[4] = "Thursday";
+        weekdays[5] = "Friday";
+        weekdays[6] = "Saturday";
         var today = new Date();
         var index = 0;
 
         for (i=0;i<data3.cnt;i++) {
           var day = new Date(data3.list[i].dt*1000);
 
-          //TODO: this is nice and all but doesn't work very well
-          // need to add: check all forecast values and get lowest/highest temp prediction
-          // need to add: check all forcast values and get best/worst weather prediction
-          if (day.getUTCHours() != 12 || index >= 4) {
-            //only using midday forecast for the next 4 days
+          if (day.getDay() == today.getDay() || index > 1) {
+            // only do forcast for future 2 days
             continue;
           }
 
-          if (day.getDay() != today.getDay()) {
-            // because `today` is hardcoded
-            console.log(day);
-            document.getElementById("forecast"+index+"_title").innerHTML = weekdays[day.getDay()];
+          if (day.getUTCHours() != 6 && day.getUTCHours() != 12 && day.getUTCHours() != 18) {
+            // only for 6:00, 12:00 and 18:00
+            continue;
           }
 
-          document.getElementById("forecast"+index+"_icon").classList.add("wi-owm-" + data3.list[i].weather[0].id);
-          document.getElementById("forecast"+index+"_icon").setAttribute("title",data3.list[i].weather[0].description);
-          document.getElementById("forecast"+index+"_note").innerHTML = data3.list[i].weather[0].description;
-          document.getElementById("forecast"+index+"_temp").innerHTML = parseFloat(data3.list[i].main.temp_min).toFixed(0) + " / " +
-            parseFloat(data3.list[i].main.temp_max).toFixed(0) + " &deg;C";
-          document.getElementById("forecast"+index+"_wind").innerHTML = data3.list[i].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg + "-deg\"></span>";
-          index++;
+          if (day.getUTCHours() == 6) {
+            segment = 0;
+          } else if (day.getUTCHours() == 12) {
+            segment = 1;
+          } else {
+            segment = 2;
+          }
+
+          document.getElementById("forecast"+index+"_title").innerHTML = weekdays[day.getDay()];
+          document.getElementById("forecast"+index+"_title").parentNode.setAttribute("title", weekdays[day.getDay()]);
+          document.getElementById("forecast"+index+segment+"_icon").classList.add("wi-owm-" + data3.list[i].weather[0].id);
+          document.getElementById("forecast"+index+segment+"_icon").setAttribute("title",data3.list[i].weather[0].description);
+          document.getElementById("forecast"+index+segment+"_note").innerHTML = data3.list[i].weather[0].description;
+          document.getElementById("forecast"+index+segment+"_temp").innerHTML = parseFloat(data3.list[i].main.temp).toFixed(0) + " &deg;C";
+          document.getElementById("forecast"+index+segment+"_wind").innerHTML = data3.list[i].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg + "-deg\"></span>";
+
+          if (data3.list[i].rain != undefined) {
+            document.getElementById("forecast"+index+segment+"_rain").innerHTML = parseFloat(data3.list[i].rain["3h"]).toFixed(2) + " mm";
+          } else {
+            document.getElementById("forecast"+index+segment+"_rain").innerHTML = "0 mm";
+          }
+
+          if (segment == 2) {
+            index++;
+          }
         }
       }
 
@@ -104,4 +114,5 @@ window.addEventListener('message', function(event) {
   }
 
   request.send();
+
 }, false);

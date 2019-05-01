@@ -14,17 +14,17 @@
 <header>
   <div title="location this data is displayed for" id="location"></div>
   <div id="current">
-    <div title="current temperature" class="block">
+    <div title="Current Temperature" class="block">
       <span id="now_temp" class="temperature"></span>
       <div id="now_temp_note" class="note"></div>
     </div>
 
-    <div title="current weather" class="block">
+    <div title="Current Weather" class="block">
       <div id="now_weather" class="icon wi">
       </div>
     </div>
 
-    <div title="official weather warnings" class="block">
+    <div title="Official Weather Warnings" class="block">
       <span id="now_warning" class="warning wi"><span>
       <div id="now_warning_note" class="note"></div>
     </div>
@@ -33,14 +33,14 @@
 
 <div id=details>
   <div class="row">
-    <div title="minimal/maxial projected temperature today" class="half-row">
+    <div title="Minimal/Maxial Projected Temperature Today" class="half-row">
       <div class="cell icon">
         <span class="wi wi-thermometer-exterior"></span> / <span class="wi wi-thermometer"></span>:
       </div>
       <div id="detail_temp" class="cell"></div>
     </div>
 
-    <div title="sunrise/sunset" class="half-row">
+    <div title="Sunrise/Sunset Time" class="half-row">
       <div class="cell icon">
         <span class="wi wi-sunrise"></span> / <span class="wi wi-sunset"></span>:
       </div>
@@ -49,14 +49,14 @@
   </div>
 
   <div class="row even">
-    <div title="wind speed and direction" class="half-row">
+    <div title="Wind Speed and Direction" class="half-row">
       <div class="cell icon">
         <span class="wi wi-strong-wind"></span>:
       </div>
       <div id="detail_wind" class="cell"></div>
     </div>
 
-    <div title="humidity" class="half-row">
+    <div title="Humidity" class="half-row">
       <div class="cell icon">
         <span class="wi wi-humidity"></span>:
       </div>
@@ -65,14 +65,14 @@
   </div>
 
   <div class="row">
-    <div title="atmospheric pressure" class="half-row">
+    <div title="Atmospheric Pressure" class="half-row">
       <div class="cell icon">
         <span class="wi wi-barometer"></span>:
       </div>
       <div id="detail_pressure" class="cell"></div>
     </div>
 
-    <div title="visibility" class="half-row">
+    <div title="Visibility Distance" class="half-row">
       <div class="cell icon">
         <span class="wi wi-windy"></span>:
       </div>
@@ -81,7 +81,7 @@
   </div>
 
   <div class="row even">
-    <div title="cloudiness" class="half-row">
+    <div title="Cloudiness" class="half-row">
       <div class="cell icon">
         <span class="wi wi-cloudy"></span>:
       </div>
@@ -101,32 +101,52 @@
 <div id=forecast>
   <div class="day border">
     <span id="forecast0_title" class="title"></span>
-    <span id="forecast0_icon" class="icon wi"></span>
-    <div id="forecast0_note" class="note"></div>
-    <div id="forecast0_temp" class="row"></div>
-    <div id="forecast0_wind" class="row"></div>
+    <div class="segment">
+      <span id="forecast00_icon" class="icon wi"></span>
+      <div title="Weather Prediction" id="forecast00_note" class="note"></div>
+      <div title="Temperature" id="forecast00_temp" class="row"></div>
+      <div title="Rain" id="forecast00_rain" class="row"></div>
+      <div title="Wind" id="forecast00_wind" class="row"></div>
+    </div>
+    <div class="segment even">
+      <span id="forecast01_icon" class="icon wi"></span>
+      <div title="Weather Prediction" id="forecast01_note" class="note"></div>
+      <div title="Temperature" id="forecast01_temp" class="row"></div>
+      <div title="Rain" id="forecast01_rain" class="row"></div>
+      <div title="Wind" id="forecast01_wind" class="row"></div>
+    </div>
+    <div class="segment">
+      <span id="forecast02_icon" class="icon wi"></span>
+      <div title="Weather Prediction" id="forecast02_note" class="note"></div>
+      <div title="Temperature" id="forecast02_temp" class="row"></div>
+      <div title="Rain" id="forecast02_rain" class="row"></div>
+      <div title="Wind" id="forecast02_wind" class="row"></div>
+    </div>
   </div>
 
-  <div class="day border">
-    <span id="forecast1_title" class="title"></span>
-    <span id="forecast1_icon" class="icon wi"></span>
-    <div id="forecast1_note" class="note"></div>
-    <div id="forecast1_temp" class="row"></div>
-    <div id="forecast1_wind" class="row"></div>
-  </div>
-  <div class="day border">
-    <span id="forecast2_title" class="title"></span>
-    <span id="forecast2_icon" class="icon wi"></span>
-    <div id="forecast2_note" class="note"></div>
-    <div id="forecast2_temp" class="row"></div>
-    <div id="forecast2_wind" class="row"></div>
-  </div>
   <div class="day">
-    <span id="forecast3_title" class="title"></span>
-    <span id="forecast3_icon" class="icon wi"></span>
-    <div id="forecast3_note" class="note"></div>
-    <div id="forecast3_temp" class="row"></div>
-    <div id="forecast3_wind" class="row"></div>
+    <span id="forecast1_title" class="title"></span>
+    <div class="segment">
+      <span id="forecast10_icon" class="icon wi"></span>
+      <div title="Weather Prediction" id="forecast10_note" class="note"></div>
+      <div title="Temperature" id="forecast10_temp" class="row"></div>
+      <div title="Rain" id="forecast10_rain" class="row"></div>
+      <div title="Wind" id="forecast10_wind" class="row"></div>
+    </div>
+    <div class="segment even">
+      <span id="forecast11_icon" class="icon wi"></span>
+      <div title="Weather Prediction" id="forecast11_note" class="note"></div>
+      <div title="Temperature" id="forecast11_temp" class="row"></div>
+      <div title="Rain" id="forecast11_rain" class="row"></div>
+      <div title="Wind" id="forecast11_wind" class="row"></div>
+    </div>
+    <div class="segment">
+      <span id="forecast12_icon" class="icon wi"></span>
+      <div title="Weather Prediction" id="forecast12_note" class="note"></div>
+      <div title="Temperature" id="forecast12_temp" class="row"></div>
+      <div title="Rain" id="forecast12_rain" class="row"></div>
+      <div title="Wind" id="forecast12_wind" class="row"></div>
+    </div>
   </div>
 </div>
 </body>
