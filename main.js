@@ -1,8 +1,18 @@
+var apiKey = "";
+var zipCode = "";
+var baseUrl = "";
+var refresh = 300;
+
 window.addEventListener('message', function(event) {
   apiKey = event.data.value.key;
   zipCode = event.data.value.zip;
   baseUrl = "https://api.openweathermap.org/data/2.5/";
+  refresh = event.data.value.refresh;
 
+  update();
+}, false);
+
+function update() {
   var request = new XMLHttpRequest()
   request.open('GET', baseUrl+'weather?units=metric&zip='+zipCode+'&APPID='+apiKey, true);
   request.onload = function () {
@@ -105,6 +115,10 @@ window.addEventListener('message', function(event) {
             index++;
           }
         }
+
+        if (refresh > 0) {
+          window.setTimeout(update, refresh * 1000);
+        }
       }
 
       request3.send();
@@ -114,5 +128,4 @@ window.addEventListener('message', function(event) {
   }
 
   request.send();
-
-}, false);
+}

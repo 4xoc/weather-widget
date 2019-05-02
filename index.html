@@ -3,8 +3,9 @@
   var frame = document.getElementById("weather");
   frame.addEventListener("load", function() {
     /* configuration */
-    apiKey = "";
-    zip= "";
-    this.contentWindow.postMessage({call:'sendValue', value: {key: apiKey, zip: zip}}, '*');
+    apiKey = ""; /* personal API key for openweathermap.org */
+    zip= ""; /* zip-code value i.e. `10001,us` for NYC, USA */
+    refresh = 300; /* refresh interval in seconds */
+    this.contentWindow.postMessage({call:'sendValue', value: {key: apiKey, zip: zip, refresh: refresh}}, '*');
   });
 </script>
