@@ -32,7 +32,7 @@ function update() {
     sunset = new Date(data.sys.sunset*1000);
     document.getElementById("detail_sun").innerHTML = sunrise.toString().slice(16,21) + " / " + sunset.toString().slice(16,21);
   
-    document.getElementById("detail_wind").innerHTML = data.wind.speed + " m/s <span class=\"wi wi-wind from-" + data.wind.deg + "-deg\"></span>";
+    document.getElementById("detail_wind").innerHTML = data.wind.speed + " m/s <span class=\"wi wi-wind from-" + data.wind.deg.toFixed(0) + "-deg\"></span>";
     document.getElementById("detail_pressure").innerHTML = data.main.pressure + " hPa"
   
     document.getElementById("detail_humid").innerHTML = data.main.humidity + " %";
@@ -103,7 +103,7 @@ function update() {
           document.getElementById("forecast"+index+segment+"_icon").setAttribute("title",data3.list[i].weather[0].description);
           document.getElementById("forecast"+index+segment+"_note").innerHTML = data3.list[i].weather[0].description;
           document.getElementById("forecast"+index+segment+"_temp").innerHTML = parseFloat(data3.list[i].main.temp).toFixed(0) + " &deg;C";
-          document.getElementById("forecast"+index+segment+"_wind").innerHTML = data3.list[i].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg + "-deg\"></span>";
+          document.getElementById("forecast"+index+segment+"_wind").innerHTML = data3.list[i].wind.speed + " m/s <span class=\"wi wi-wind from-" + data3.list[i].wind.deg.toFixed(0) + "-deg\"></span>";
 
           if (data3.list[i].rain != undefined) {
             document.getElementById("forecast"+index+segment+"_rain").innerHTML = parseFloat(data3.list[i].rain["3h"]).toFixed(2) + " mm";
