@@ -1,11 +1,14 @@
-<iframe id="weather" src="wrapper.html" width="600px" height="415px" frameborder="0" scrolling="no"></iframe>
+<iframe id="weather" src="wrapper.html" width="600px" height="430px" frameborder="0" scrolling="no"></iframe>
 <script>
   var frame = document.getElementById("weather");
   frame.addEventListener("load", function() {
     /* configuration */
-    apiKey = ""; /* personal API key for openweathermap.org */
-    zip= ""; /* zip-code value i.e. `10001,us` for NYC, USA */
-    refresh = 300; /* refresh interval in seconds */
-    this.contentWindow.postMessage({call:'sendValue', value: {key: apiKey, zip: zip, refresh: refresh}}, '*');
+    config = {
+      apiKey: "",
+      zip: "",
+      refresh: 300,
+      dwdRegionName: "",
+    }
+    this.contentWindow.postMessage({call:'sendValue', value: config}, '*');
   });
 </script>

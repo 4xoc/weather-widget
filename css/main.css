@@ -2,7 +2,6 @@ body {
   background: #161719;
   color: #eeeeee;
   font-family: Roboto;
-  max-width: 600px;
   padding: 0px;
   margin: 5px;
 }
@@ -34,7 +33,7 @@ header #current .temperature {
 
 header #current .icon {
   font-size: 70px;
-  margin: 0px 10px 15px 10px;
+  margin: 0px 10px 30px 10px;
 }
 
 header #current .warning {
@@ -148,4 +147,20 @@ header #current .note {
 #forecast .row {
   padding-top: 5px;
   font-size: 15px;
+}
+
+.level1 {
+  color: yellow;
+}
+
+.level2 {
+  color: orange;
+}
+
+.level3 {
+  color: red;
+}
+
+.level4 {
+  color: #ef00ef; #purple
 }
