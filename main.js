@@ -59,20 +59,16 @@ async function getWeatherWarnings() {
             data.warnings[id][0].event == "GLÄTTE") {
             warning["icon"] = "wi-snowflake-cold";
 
-          } else if (data.warnings[id][0].event == "GEWITTER") {
+          } else if (data.warnings[id][0].event.includes("GEWITTER")) {
             warning["icon"] = "wi-thunderstorm";
 
-          } else if (data.warnings[id][0].event == "LEICHTER SCHNEEFALL" ||
-            data.warnings[id][0].event == "SCHNEEFALL") {
+          } else if (data.warnings[id][0].event.includes("LEICHTER SCHNEEFALL")) {
             warning["icon"] = "wi-snow";
 
-          } else if (data.warnings[id][0].event == "BÖEN" ||
-            data.warnings[id][0].event == "STARKWIND" ||
-            data.warnings[id][0].event == "STURMBÖEN" ||
-            data.warnings[id][0].event == "WINDBÖEN") {
+          } else if (data.warnings[id][0].event.includes("BÖEN") ||
+            data.warnings[id][0].event.includes("WIND")) {
             warning["icon"] = "wi-strong-wind";
           }
-
 
           // add warning to list
           warnings[warnings.length] = warning;
@@ -89,6 +85,8 @@ async function getWeatherWarnings() {
     // TODO: add support for multiple warnings
     for (var i in warnings) {
       document.getElementById("now_warning").classList.add("level" + warnings[i].level);
+      document.getElementById("now_warning_note").classList.add("level" + warnings[i].level);
+      document.getElementById("now_warning").classList.remove("wi-na");
       document.getElementById("now_warning").classList.add(warnings[i].icon);
       document.getElementById("now_warning_note").innerHTML = warnings[i].note;
       document.getElementById("now_warning").parentNode.setAttribute("title", warnings[i].description);

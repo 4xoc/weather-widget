@@ -38,6 +38,8 @@ header #current .icon {
 
 header #current .warning {
   font-size: 40px;
+  position: relative;
+  top: -15px;
 }
 
 header #current .note {
