@@ -59,10 +59,13 @@ async function getWeatherWarnings() {
             data.warnings[id][0].event == "GLÄTTE") {
             warning["icon"] = "wi-snowflake-cold";
 
+          } else if (data.warnings[id][0].event.includes("REGEN")) {
+            warning["icon"] = "wi-rain";
+
           } else if (data.warnings[id][0].event.includes("GEWITTER")) {
             warning["icon"] = "wi-thunderstorm";
 
-          } else if (data.warnings[id][0].event.includes("LEICHTER SCHNEEFALL")) {
+          } else if (data.warnings[id][0].event.includes("SCHNEEFALL")) {
             warning["icon"] = "wi-snow";
 
           } else if (data.warnings[id][0].event.includes("BÖEN") ||
