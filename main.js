@@ -71,6 +71,10 @@ async function getWeatherWarnings() {
           } else if (data.warnings[id][0].event.includes("BÖEN") ||
             data.warnings[id][0].event.includes("WIND")) {
             warning["icon"] = "wi-strong-wind";
+
+          } else if (data.warnings[id][0].event.includes("UV-INDEX")) {
+            warning["icon"] = "wi-day-sunny";
+            warning["level"] = 4;
           }
 
           // add warning to list
